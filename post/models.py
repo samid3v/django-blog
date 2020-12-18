@@ -29,7 +29,7 @@ class Post(models.Model):
     title = models.CharField(blank=False, max_length=250)
     slug = AutoSlugField(populate_from='title')
     post_category = models.ForeignKey(Category, blank=False, on_delete=models.CASCADE)
-    post_image = models.ImageField(null=True, upload_to='post_image/', default=None)
+    post_image = models.ImageField(blank=False,  null=True, upload_to='post_image/')
     author = models.ForeignKey(User, blank=False, on_delete=models.CASCADE)
     post = RichTextField(blank=False)
     create_date = models.DateTimeField(auto_now_add=True)
