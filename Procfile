@@ -1,1 +1,1 @@
-web:bin/start-pgbouncer-stunnel gunicorn blog.wsgi
+web:gunicorn blog.wsgi
