@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}
+    welcome to Speakout
+{% endblock  %}
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <strong>Success</strong>{{message}}
+</div>
+{% endfor %}
+{% endif %}
+<div class="row">
+    <div class="card col-md-4">
+        <div class="card-header"><h2 class="text-center text-info">{{user.get_full_name}} Profile Info</h2></div>
+        <div class="card-body float-left">
+            <h5 class="card-title">Full Name: {{user.get_full_name}}</h5>
+            <p class="card-text">First Name: {{user.first_name}}</p>
+            <p class="card-text">Last Name: {{user.last_name}}</p>
+            <p class="card-text">UserName: {{user.username}}</p>
+            <p class="card-text">Email: {{user.email}}</p>
+            <a href="#" class="btn btn-primary">Edit Profile</a>
+        </div>
+        <div class="card-footer"> <p class="text-info">Number Of Post:<span class="badge badge-secondary ml-2 p-2">{{posts.count}}</span></p></div>
+    </div>
+    <div class="card col-md-8">
+        <div class="card-header"><h2 class="text-center text-info">{{user.get_full_name}} Posts</h2></div>
+        <div class="card-body">
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Post Title</th>
+                        <th scope="col">Categoty</th>
+                        <th scope="col">create Date</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{post.title}}</td>
+                            <td>{{post.category.category}}</td>
+                            <td>{{post.create_date}}</td>
+                            <td class="d-flex flex-right">
+                                <a href="{% url 'view_post' post.id post.slug %}" class="btn btn-light"><i class="fa fa-eye text-info" aria-hidden="true"></i></a>
+                                <a href="{% url 'update_post' post.id post.slug %}" class="btn btn-light"><i class="fa fa-pencil text-success" aria-hidden="true"></i></a>
+                                <a href="{% url 'delete_post' post.id post.slug %}" class="btn btn-light"><i class="fa fa-trash-o text-danger" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block footer %}
+{% include 'incs/footer.html' %}
+{% endblock  %}

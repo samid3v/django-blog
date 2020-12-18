@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+ 
+ {%load crispy_forms_tags%}
+{% block title %}
+    Update Post
+{% endblock  %}
+
+{% block content %}
+
+<div class="row mt-2 d-flex justify-content-center">
+    <form class="border border-light col-md-9 form-group" method="post">
+    <p class="h3 text-center mb-2">Create Post</p>
+    {% csrf_token %}
+        {{form.media}}
+        {{form|crispy}}
+        <button type="submit" class="btn btn-success btn-lg mt-3">Update Post</button>
+
+    </form>
+</div>
+
+      
+    
+
+
+{% endblock %}
+{% block footer %}
+{% include 'incs/footer.html' %}
+{% endblock  %}

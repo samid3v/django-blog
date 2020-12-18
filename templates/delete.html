@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'delete_post' post.id post.slug %}" method="POST">
+        {% csrf_token %}
+        <div class="row justify-content-center mt-5">
+            <div class="card col-md-6" id="delete_card">
+                <div class="card-body">
+                    <div class="row">
+                        <h4>Are you sure you want to delete the post?</h4>
+                    </div>
+                    <div class="row">
+                        <h5>"{{ post.title }}"</h5>
+                    </div>
+                    <hr />
+                    <div class="row justify-content-center">
+                        <input type="hidden" value={% url 'profile' post.author.id post.author.username %} name="url">
+                        <button type="submit" class="btn btn-danger mr-2">Yes</button>
+                        <a class="btn btn-info" href="{% url 'profile' post.author.id post.author.username %}">No</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock  %}
