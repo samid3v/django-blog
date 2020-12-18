@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import django_heroku
 from pathlib import Path
-import io  
+import io 
+import dj_database_url 
 
 
 
@@ -28,7 +29,7 @@ SECRET_KEY = '60dcz2r8kxs)y2a50jm$pso#1_*(!0)+e9@&+m#ae3s97@ub*e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['speakout-blog.herokuapp.com/', '127.0.0.1']
 
 
 # Application definition
