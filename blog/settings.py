@@ -9,11 +9,9 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-import django_heroku
-from pathlib import Path
-import io 
-import dj_database_url 
 
+from pathlib import Path
+import io  
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +27,7 @@ SECRET_KEY = '60dcz2r8kxs)y2a50jm$pso#1_*(!0)+e9@&+m#ae3s97@ub*e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['speakout-blog.herokuapp.com/', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -87,16 +85,14 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2'
-        # 'NAME': 'myblog',
-        # 'USER': 'postgres',
-        # 'PASSWORD': 'test1234',
-        # 'HOST': 'localhost',
-        # 'PORT': '',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'myblog',
+        'USER': 'postgres',
+        'PASSWORD': 'test1234',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
-
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # Password validation
@@ -139,8 +135,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-PROJECT_ROOT = BASE_DIR
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
@@ -152,7 +146,3 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 
  # Requires you to also place the ckeditor files
 DJANGO_WYSIWYG_MEDIA_URL = MEDIA_URL + "ckeditor/"
-
-
-
-django_heroku.settings(locals())
