@@ -9,10 +9,12 @@ User = settings.AUTH_USER_MODEL
 
 # Create your models here.
 class UserImage(models.Model):
+    id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_image = models.ImageField(blank=True, upload_to='profile/')
 
 class Category(models.Model):
+    id = models.AutoField(primary_key=True)
     category = models.CharField(blank=False, max_length=50)
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now_add=True)
@@ -26,6 +28,7 @@ class Category(models.Model):
     
 
 class Post(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(blank=False, max_length=250)
     slug = AutoSlugField(populate_from='title')
     post_category = models.ForeignKey(Category, blank=False, on_delete=models.CASCADE)
@@ -40,6 +43,7 @@ class Post(models.Model):
         return self.title +' | '+ str(self.author)
 
 class Comment(models.Model):
+    id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, blank=False, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, blank=False, on_delete=models.CASCADE)
     comment = models.TextField(blank=False)
